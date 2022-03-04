@@ -1,0 +1,16 @@
+<div>
+    {{> post-info post }}
+</div>
+
+<form class="comment-form">
+    <div>
+        <textarea name="comment-text"></textarea>
+    </div>
+    <button type="submit">Comment</button>
+</form>
+
+<ol>
+    {{> comments post.comments }}
+</ol>
+
+<script src="/javascript/comment.js"></script>
