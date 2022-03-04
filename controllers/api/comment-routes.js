@@ -11,18 +11,16 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    if (req.session) {
-        Comment.create({
-            comment_text: req.body.comment_text,
-            post_id: req.body.post_id,
-            user_id: req.session.user_id
-        })
-            .then(dbCommentData => res.json(dbCommentData))
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    }
+    Comment.create({
+        content: req.body.content,
+        post_id: req.body.post_id,
+        user_id: req.session.user_id
+    })
+        .then(dbCommentData => res.json(dbCommentData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.put('/:id', (req, res) => {
