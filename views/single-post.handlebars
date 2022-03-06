@@ -2,12 +2,14 @@
     {{> post-info post }}
 </div>
 
+{{#if loggedIn}}
 <form class="comment-form">
     <div>
         <textarea name="comment-text"></textarea>
     </div>
     <button type="submit">Comment</button>
 </form>
+{{/if}}
 
 <ol>
     {{> comments post.comments }}
