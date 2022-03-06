@@ -10,4 +10,13 @@
     <button type="submit">Post</button>
 </form>
 
+<ol>
+    {{#each posts as |post|}}
+    <li>
+        {{> post-info post}}
+        <a href="/dashboard/edit/{{id}}">Edit</a>
+    </li>
+    {{/each}}
+</ol>
+
 <script src="/javascript/add-post.js"></script>

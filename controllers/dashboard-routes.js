@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+// const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -12,13 +12,12 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'content',
-            'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            'created_at'
         ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'content', 'user_id', 'created_at'],
+                attributes: ['id', 'content', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -32,7 +31,7 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('dashboard', { posts, loggedIn: true });
+            res.render('dashboard', { posts });
         })
         .catch(err => {
             console.log(err);
@@ -46,13 +45,12 @@ router.get('/edit/:id', (req, res) => {
             'id',
             'title',
             'content',
-            'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            'created_at'
         ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'content', 'user_id', 'created_at'],
+                attributes: ['id', 'content', 'user_id', 'created_at'],
                 include: {
                 model: User,
                 attributes: ['username']
