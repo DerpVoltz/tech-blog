@@ -12,6 +12,10 @@ To install this, all you need to do is clone the repo, run npm i, and create a .
 
 In the future, this website will be styled better. I will also add the ability to delete your own comments and comments on your posts.
 
+## Deployed
+
+[Website](https://stormy-ocean-88133.herokuapp.com/)
+
 ## Screenshot
 
 ![Screenshot](./public/images/screenshot.png)
